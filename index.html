@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Allinone Live TV Hub</title>
+  <title>Swapon Live TV Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -545,7 +545,7 @@
       </a>
     </div>
     <div class="footer-text">
-      © 2025 Allinone Live TV Hub. All rights reserved.
+      © 2025 Swapon Live TV Hub. All rights reserved.
     </div>
   </footer>
 
@@ -699,13 +699,6 @@
     });
   </script>
   <!-- Anti-Adblock Popup -->
-<div class="adb" id="adb" style="display: none;">
-    <div class="adbs">
-        <h3>Adblock Detected</h3>
-        <p>Please disable your adblocker to continue browsing this site.</p>
-    </div>
-</div>
-
 <style>
 .adb {
     position: fixed;
@@ -739,64 +732,6 @@
 }
 </style>
 
-<script>
-function showAdblockPopup() {
-    document.getElementById('adb').style.display = 'flex';
-}
-
-async function detectAdblock() {
-    return new Promise(resolve => {
-        let detected = false;
-
-        // Create bait elements
-        const bait = document.createElement('div');
-        bait.innerHTML = '&nbsp;';
-        bait.className = 'adsbox ad adsense banner-ad';
-        bait.style.cssText = 'width:1px;height:1px;position:absolute;left:-9999px;top:-9999px;visibility:visible;';
-        document.body.appendChild(bait);
-
-        const img = document.createElement('img');
-        img.src = 'https://pagead2.googlesyndication.com/pagead/imgad?id=CAASFeDxyz';
-        img.style.cssText = 'width:1px;height:1px;position:absolute;left:-9999px;top:-9999px;';
-        img.onerror = () => { detected = true; };
-        document.body.appendChild(img);
-
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://googleads.g.doubleclick.net/pagead/html/r2023/sample-ad.html';
-        iframe.style.cssText = 'width:1px;height:1px;position:absolute;left:-9999px;top:-9999px;';
-        iframe.onerror = () => { detected = true; };
-        document.body.appendChild(iframe);
-
-        // Wait 300ms to give adblockers time
-        setTimeout(() => {
-            const baitStyles = window.getComputedStyle(bait);
-            if (
-                detected ||
-                baitStyles.display === 'none' ||
-                baitStyles.visibility === 'hidden' ||
-                bait.offsetHeight === 0 ||
-                bait.offsetParent === null
-            ) {
-                detected = true;
-            }
-
-            // Cleanup
-            bait.remove();
-            img.remove();
-            iframe.remove();
-
-            resolve(detected);
-        }, 300);
-    });
-}
-
-window.addEventListener('DOMContentLoaded', async () => {
-    const isBlocked = await detectAdblock();
-    if (isBlocked) {
-        showAdblockPopup();
-    }
-});
-</script>
 </body>
 
 </html>
